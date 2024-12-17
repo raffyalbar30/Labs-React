@@ -13,7 +13,7 @@ export default function Delate({item}) {
                type: "deleted", 
                id: item.id
          })
-        }}><FaTrashAlt/></button>
+        }} ><FaTrashAlt/></button>
     </div>
   )
 }

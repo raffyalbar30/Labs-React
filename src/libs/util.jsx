@@ -21,7 +21,6 @@ import { Products  } from '../data/product';
   function useCRUD(data, actions) {
     switch (actions.type) {
       case "addcars": {
-
         const { Title, Desc, Image} = actions.getInputs;
         const newData = {
            id : data.length, 
@@ -35,15 +34,15 @@ import { Products  } from '../data/product';
         ];
       };
 
-      case "rename" : {
-         return data.map((datas) => {
-           if (datas.id === actions.item.id) {
-              return actions.item;
-            } else {
-              return datas;
-            }
-         })
-      };
+      case "rename": {
+        return data.map((datas) => {
+          if (datas.id === actions.item.id) {
+            return actions.item; 
+          }
+          return datas; 
+        });
+      }
+      
 
       case 'deleted': {
         return data.filter(t => t.id !== actions.id);
@@ -59,7 +58,7 @@ import { Products  } from '../data/product';
 
   
   const [ OpenModal, setisOpenModal ] = useState();
-  const [ OpenRename, setOpenRename ] = useState();
+  
  
 
   const HandleOpenModal = (e) => {
@@ -72,24 +71,14 @@ import { Products  } from '../data/product';
      setisOpenModal(false)
   }
   
-  const HandleRenameModal = (e) => {
-    e.preventDefault();
-    setOpenRename(true)
-  }
-  
-  const HandleCloseRename = (e) => {
-    e.preventDefault();
-    setOpenRename(false)
-  }
+ 
 
   return (
     <UseContext.Provider value={{
       OpenModal,
+      setisOpenModal,
       HandleOpenModal,
       HandleCloseModal,
-      HandleRenameModal,
-      HandleCloseRename,
-      OpenRename, 
       task
       }}>
       <Usereducercontext.Provider value={{ dispact }}>

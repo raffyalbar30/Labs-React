@@ -5,15 +5,17 @@ import UseContext from '../../../../store/context'
 import { UseReducersContext } from '../../../../libs/util';
 import Modal from '../../../../components/modal/modal';
 import Form from '../../../../components/form';
+import { IoCarSport } from 'react-icons/io5';
 
 
 
 export default function Update() {
 
-  const { OpenModal, HandleOpenModal, HandleCloseModal, } = useContext(UseContext);
+  const { OpenModal, HandleOpenModal, HandleCloseModal, setisOpenModal } = useContext(UseContext);
   const { dispact } = UseReducersContext();
 
   const [ getInputs, setgetInputs ] = useState(InitialState);
+ 
 
   const HandlegetInputs = (e) => {
      const { name, value }= e.target;
@@ -23,19 +25,31 @@ export default function Update() {
       }))
   }
 
+  // pr validasi form inputs
   const HandleADD = () => {
-     dispact({
-        type: "addcars", 
-        getInputs
-     })
-     
+    if (!getInputs) {
+       return
+    } else {
+      dispact({
+         type: "addcars", 
+         getInputs
+      })
+      setisOpenModal(false);
+    }
+
+    
     }
    
     
   return (
     <>
-    <Button onClick={HandleOpenModal}>Add Cars</Button>
-    <Modal className={`${ !OpenModal ? "hidden" : "active"}`}> 
+      <Button className={`bg-transparent border border-solid w-28 p-1 rounded-md text-white flex gap-x-1 items-center`}
+         onClick={HandleOpenModal}>
+           <IoCarSport className='ml-2 text-[20px] mr-2' /> 
+            <span className='text-[12px]'> UPLOAD</span>
+      </Button>
+
+     <Modal className={`${ !OpenModal ? "hidden" : "active"}`}> 
          <Form Onclick={HandleADD}
           onChange={HandlegetInputs} 
           Onclose={HandleCloseModal}
