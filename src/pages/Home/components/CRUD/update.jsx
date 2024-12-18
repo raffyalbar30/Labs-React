@@ -27,8 +27,14 @@ export default function Update() {
 
   // pr validasi form inputs
   const HandleADD = () => {
-    if (!getInputs) {
-       return
+    const { Title, Desc, Image} = getInputs;
+
+    if (!Title?.trim() && !Desc?.trim()) {
+       return alert("Harus isi Title dan Descripsi")
+    } 
+
+    if (!Image?.trim()) {
+      return alert("Harus isi Url Image")
     } else {
       dispact({
          type: "addcars", 
@@ -36,7 +42,6 @@ export default function Update() {
       })
       setisOpenModal(false);
     }
-
     
     }
    

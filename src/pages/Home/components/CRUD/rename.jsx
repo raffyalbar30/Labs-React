@@ -24,7 +24,6 @@ const Rename = ({ item }) => {
 
 
  const HandleRename = () => {
-  if (getRename.id) {
     dispact({
        type: "rename",
        item: {
@@ -34,8 +33,7 @@ const Rename = ({ item }) => {
             Image : getRename?.Image
        }
     })
-  }
-   
+    setOpenRename(false)
 }
 
 const HandlegetInputs = (e) => {
@@ -50,6 +48,7 @@ const HandlegetInputs = (e) => {
  
   const HandleRenameModal = (e) => {
   setOpenRename(true)
+
  }
 
   const HandleCloseRename = (e) => {
