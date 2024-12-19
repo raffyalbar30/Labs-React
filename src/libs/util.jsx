@@ -16,7 +16,6 @@ import { Products  } from '../data/product';
     useCRUD, 
     Products
   )
-  
 
   function useCRUD(data, actions) {
     switch (actions.type) {
@@ -34,7 +33,7 @@ import { Products  } from '../data/product';
         ];
       };
 
-      case "rename": {
+      case "rename" : {
         return data.map((datas) => {
           if (datas.id === actions.item.id) {
             return actions.item; 
@@ -43,7 +42,10 @@ import { Products  } from '../data/product';
         });
       }
       
-
+      case "searching" : {
+        return data.filter((datas) => datas.id === actions.item.id);
+      }
+      
       case 'deleted': {
         return data.filter(t => t.id !== actions.id);
       };
@@ -58,8 +60,9 @@ import { Products  } from '../data/product';
 
   
   const [ OpenModal, setisOpenModal ] = useState();
-  
- 
+  const [getSearch, setgetSearch ] = useState()
+  const [ filterdata, setfilterdata ] = useState()
+
 
   const HandleOpenModal = (e) => {
       e.preventDefault();
@@ -71,17 +74,33 @@ import { Products  } from '../data/product';
      setisOpenModal(false)
   }
   
- 
-
+  
+  const HandleSearching = () => {
+     try {
+       const Filter = task?.find((items) => {
+          return items?.Title.toLowerCase() === getSearch.toLowerCase(); 
+       })
+       setfilterdata(Filter);
+      
+     } catch (error) {
+       console.log(error);
+       
+     }
+  }
+  
+  
+  
   return (
     <UseContext.Provider value={{
       OpenModal,
       setisOpenModal,
       HandleOpenModal,
       HandleCloseModal,
-      task
+      HandleSearching,
+      task, 
+      filterdata
       }}>
-      <Usereducercontext.Provider value={{ dispact }}>
+      <Usereducercontext.Provider value={{ dispact, setgetSearch }}>
         { children }
       </Usereducercontext.Provider>
     </UseContext.Provider>
