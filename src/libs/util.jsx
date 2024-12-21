@@ -16,6 +16,8 @@ import { Products  } from '../data/product';
     useCRUD, 
     Products
   )
+  
+  console.log(task);
 
   function useCRUD(data, actions) {
     switch (actions.type) {
@@ -42,10 +44,6 @@ import { Products  } from '../data/product';
         });
       }
       
-      case "searching" : {
-        return data.filter((datas) => datas.id === actions.item.id);
-      }
-      
       case 'deleted': {
         return data.filter(t => t.id !== actions.id);
       };
@@ -62,6 +60,7 @@ import { Products  } from '../data/product';
   const [ OpenModal, setisOpenModal ] = useState();
   const [getSearch, setgetSearch ] = useState()
   const [ filterdata, setfilterdata ] = useState()
+  const [ search, setsearch ] = useState()
 
 
   const HandleOpenModal = (e) => {

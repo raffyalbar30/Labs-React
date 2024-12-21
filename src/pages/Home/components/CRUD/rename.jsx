@@ -10,7 +10,7 @@ import Button from '../../../../components/Button';
 
 
 
-const Rename = ({ item, filterdata}) => {
+ const Rename = ({ item, filterdata}) => {
 
 
  const [ getRename, setgetRename ] = useState({
@@ -18,16 +18,18 @@ const Rename = ({ item, filterdata}) => {
    Title: item?.Title, 
    Desc: item?.Desc,
    Image: item?.Image
-});
+ });
 
-const [ getSearch, setgetSearch ] = useState({
+ const [ getSearch, setgetSearch ] = useState({
    id: filterdata?.id,
    Title: filterdata?.Title,
    Desc: filterdata?.Desc,
    Image: filterdata?.Image
-});
+ });
 
-console.log(getSearch);
+
+
+
 
 
  const { dispact } = UseReducersContext();
@@ -37,43 +39,33 @@ console.log(getSearch);
     dispact({
        type: "rename",
        item: {
-            id: getRename?.id, 
-            Title: getRename?.Title,
-            Desc : getRename?.Desc,
-            Image : getRename?.Image
+            id: filterdata ? getSearch?.id : getRename?.id, 
+            Title: filterdata ? getSearch?.Title : getRename?.Title,
+            Desc : filterdata ? getSearch?.Desc : getRename?.Desc,
+            Image : filterdata ? getSearch?.Image : getRename?.Image
         }
     })
     setOpenRename(false)
 }
 
- const HandleFilterChange = () => {
-   dispact({
-      type: "searching",
-      item: {
-           id: getRename?.id, 
-           Title: getRename?.Title,
-           Desc : getRename?.Desc,
-           Image : getRename?.Image
-       }
-   })
-   setOpenRename(false)
- }
+ 
 
-const HandlegetInputs = (e) => {
+ const HandlegetInputs = (e) => {
   const { name, value } = e.target;
+  filterdata ?  
+  setgetSearch((data) => ({
+   ...data, 
+   [name]: value
+ })) :
    setgetRename((data) => ({
       ...data, 
       [name]: value
    }))
-}
 
-const HandleSearch = (e) => {
-   const { name, value } = e.target;
-   setgetSearch((data) => ({
-      ...data, 
-      [name]: value
-   }))
-}
+
+ }
+
+
 
  const [ OpenRename, setOpenRename ] = useState();
  
@@ -98,8 +90,8 @@ const HandleSearch = (e) => {
 
                   <>
                     <Modal className={`${ !OpenRename ? "hidden" : "active"}`}> 
-                          <Form Onclick={filterdata ? HandleFilterChange : HandleRename}
-                            onChange={filterdata ? HandleSearch : HandlegetInputs}
+                          <Form Onclick={HandleRename}
+                            onChange={HandlegetInputs}
                             placeholdername={ filterdata ? filterdata.Title : item?.Title} 
                             Onclose={HandleCloseRename}
                             placeholderdesc={"Masukan Description"}
