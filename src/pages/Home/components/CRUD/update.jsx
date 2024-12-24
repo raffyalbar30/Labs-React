@@ -48,7 +48,7 @@ export default function Update() {
     
   return (
     <>
-      <Button className={`bg-transparent border border-solid w-28 p-1 rounded-md text-white flex gap-x-1 items-center`}
+      <Button className={`pl-6 bg-transparent border border-solid w-28 p-1 rounded-md text-white flex gap-x-1 items-center`}
          onClick={HandleOpenModal}>
            <IoCarSport className='ml-2 text-[20px] mr-2' /> 
             <span className='text-[12px]'> UPLOAD</span>

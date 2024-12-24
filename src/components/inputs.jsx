@@ -1,10 +1,10 @@
 import React from 'react'
 
-export default function Inputs({ onChange, placeholderurl, className }) {
+export default function Inputs({ name, onChange, placeholderurl, className }) {
   return (
       <>
        <input type='text' placeholder={placeholderurl} onChange={onChange} 
-         name='Title' className={className} />
+         name={name} className={className} />
       </>
   )
 }

@@ -13,7 +13,7 @@ export default function Searching() {
     
   return (
     <div className='flex items-center relative'>
-         <Inputs placeholderurl={`Apa yang inin kamu cari...`} 
+         <Inputs name={`Title`} placeholderurl={`Apa yang inin kamu cari...`} 
          className={`'mt-2 w-full px-12 rounded-md p-1 border border-zinc-600' `}
          onChange={(e) => setgetSearch(e.target.value)} />
           <div onClick={HandleSearching} className='absolute z-10 ml-2 border border-l-0 border-t-0 border-b-0 p-1'>

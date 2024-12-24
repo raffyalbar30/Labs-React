@@ -60,7 +60,7 @@ import { Products  } from '../data/product';
   const [ OpenModal, setisOpenModal ] = useState();
   const [getSearch, setgetSearch ] = useState()
   const [ filterdata, setfilterdata ] = useState()
-  const [ search, setsearch ] = useState()
+ 
 
 
   const HandleOpenModal = (e) => {
