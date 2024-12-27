@@ -1,13 +1,13 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext} from 'react'
 import Inputs from '../../../components/inputs'
 import { CiSearch } from 'react-icons/ci'
-import UseContext from '../../../store/context';
 import { UseReducersContext } from '../../../libs/util';
+import UseContext from '../../../store/context';
 
 
 export default function Searching() {
 
-    const { HandleSearching } = useContext(UseContext)
+     const { HandleSearching} = useContext(UseContext)
     const { setgetSearch } = UseReducersContext();
   
     

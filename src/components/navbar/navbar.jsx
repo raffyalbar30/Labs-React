@@ -1,19 +1,16 @@
 import React from 'react'
 import Labels from '../Labels'
-import { CiSearch } from "react-icons/ci";
-import Update from '../../pages/Home/components/CRUD/update';
-import Searching from '../../pages/Home/components/searching';
 
 
-export default function Navbar() {
+
+export default function Navbar({children}) {
   return (
       <div className='flex justify-between items-center'>
          <div className='p-2'> 
              <Labels classname={`text-[24px] font-semibold text-white`}>Raff Cars</Labels>
          </div>
          <div className='flex items-center gap-x-1 mr-2'> 
-                <Searching />
-                <Update />
+                 {children}
          </div>
       </div>
   )
